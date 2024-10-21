@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game List</title>
+</head>
+<body>
+    <h1>Game List</h1>
+    
+    <div class="games-list">
+        {% for game in api_games %}
+            <div class="game-item">
+                <strong>{{ game.name }}</strong> - {{ game.released }} (Rating: {{ game.rating }})
+                <div class="game-image">
+                    <img src="{{ game.background_image }}" alt="{{ game.name }}">
+                </div>
+            </div>
+        {% empty %}
+            <div class="no-games">No games available from the API.</div>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>

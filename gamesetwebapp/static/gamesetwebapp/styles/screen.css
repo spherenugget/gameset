@@ -1,0 +1,26 @@
+body {
+    font-family: sans-serif;
+    font-weight: 1em; 
+    background-color: black;
+    color: white;
+    width: 920px;
+}
+
+.logo {
+    width: 190px;
+}
+
+.nav_sep {
+    width: 10px;
+    margin-right: 10px;
+}
+.games {
+    background-color: rgba(40, 40, 220, 0.76);
+    margin-top: 12px;
+}
+nav ul li {
+    display: inline;
+    font-size: 190% ;
+    margin-right: 15px;
+    font-weight: bold;
+}
