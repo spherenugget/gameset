@@ -4,22 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game List</title>
+    {% load static %}
+        <!-- Add Bootstrap CSS via CDN -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Link to stylesheet -->
+        <link rel="stylesheet" href="{% static 'gamesetwebapp\styles\screen.css' %}">
 </head>
 <body>
-    <h1>Game List</h1>
-    
-    <div class="games-list">
-        {% for game in api_games %}
-            <div class="game-item">
-                <strong>{{ game.name }}</strong> - {{ game.released }} (Rating: {{ game.rating }})
-                <div class="game-image">
-                    <img src="{{ game.background_image }}" alt="{{ game.name }}">
+    <div class="container my-4">
+        <h1 class="text-center mb-4">Gameset: Everything about Games </h1>
+
+        <div class="row">
+            {% for game in api_games %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ game.background_image }}" class="card-img-top" alt="{{ game.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ game.name }}</h5>
+                            <p class="card-text">Released: {{ game.released }}</p>
+                            <p class="card-text">Rating: {{ game.rating }}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {% empty %}
-            <div class="no-games">No games available from the API.</div>
-        {% endfor %}
+            {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-warning">No games available from the API.</div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    
+
 </body>
 </html>

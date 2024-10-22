@@ -6,21 +6,63 @@ body {
     width: 920px;
 }
 
+/* Styling for game list container */
+.games-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: rgb(48, 48, 213);
+}
+
+/* Individual game item styling */
+.game-item {
+    border: 1px solid #fff;
+    padding: 16px;
+    background-color: #333;
+    border-radius: 8px;
+    width: calc(33.333% - 20px);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Styling for game images */
+.game-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* No games message styling */
+.no-games {
+    font-size: 1.2rem;
+    color: #999;
+    text-align: center;
+}
+
+/* Additional styling for the logo */
 .logo {
     width: 190px;
 }
 
+/* Navigation separator */
 .nav_sep {
     width: 10px;
     margin-right: 10px;
 }
-.games {
-    background-color: rgba(40, 40, 220, 0.76);
-    margin-top: 12px;
+
+/* Game list width */
+.game-list {
+    width: 200px;
 }
+
+/* Navigation list items */
 nav ul li {
     display: inline;
-    font-size: 190% ;
+    font-size: 190%;
     margin-right: 15px;
     font-weight: bold;
+}
+
+.card-body {
+    color: black;
+    width: fit-content;
 }
