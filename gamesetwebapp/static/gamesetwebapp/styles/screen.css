@@ -5,6 +5,35 @@ body {
     color: white;
     width: 920px;
 }
+/* Logo styling */
+.gameset-icon {
+    width: 100px;
+    display: block;
+}
+
+.btn-group-justified {
+    background-color: rgb(9, 9, 158);
+    border-radius: 20px;
+    padding-left: 100px;
+}
+/* Navigation Bar styling */
+
+.nav-bar {
+    list-style-type: none; 
+    margin: 0;            
+    padding: 0;           
+    float: right;         
+}
+
+.nav-bar li {
+    display: inline;      
+    margin-left: 20px;  
+}
+
+.container-my-4 {
+    width: 100%;
+    float: center;
+}
 
 /* Styling for game list container */
 .games-list {
@@ -64,5 +93,5 @@ nav ul li {
 
 .card-body {
     color: black;
-    width: fit-content;
+    width: 100%;
 }
