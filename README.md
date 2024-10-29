@@ -12,9 +12,11 @@ Beginner game developers, beginner web developers, and those who just learning c
 
 ![image](https://github.com/user-attachments/assets/d18e189f-6266-4f8b-95e8-c4d5c09f5d09)
 
-FOR COLABORATION: Things to consider as follow
-1. The game development environment using; django, html, and css, bootstrap. Main backend programming language.
-2. Beginner friendly.
+<h2>FOR COLABORATION: Things to consider as follow</h2>
+<hr>
+1. The game development environment using; django, html, and css, bootstrap.
+2. Programming languages: Python
+4. Beginner friendly.
 
 <h1> Who am I </h1>
 <hr>
