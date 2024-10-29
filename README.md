@@ -1,11 +1,14 @@
 ![icon](https://github.com/user-attachments/assets/c9f86def-d96b-44c0-bdc6-0b0801de9fe1)
 
+<h1>About</h1>
+<hr>
 GAMESET is a gamers discussion website which is open to all. This is part of my semester-long-web-development project. 
 
 * The main key feature of GAMESET is to enable gamers to openly discuss their interest on games.
 * The website includes Home, Trends, Genre, and About page.
 
-FEATURES: 
+<h1> FEATURES </h1>
+<hr>
 * NO SIGN-UP OR ACCOUNT CREATION.
 * GAMERS CAN REQUEST MORE GAMES TO BE ADDED TO THE DATASE FOR DISCUSSION.
 
