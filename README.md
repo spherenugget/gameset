@@ -2,10 +2,8 @@
 
 <h1>About</h1>
 <hr>
-GAMESET is a gamers discussion website which is open to all. This is part of my semester-long-web-development project. 
-
-* The main key feature of GAMESET is to enable gamers to openly discuss their interest on games.
-* The website includes Home, Trends, Genre, and About page.
+Gameset is a gamer discussion website gamers can discuss and recommend their favorite games to one another. Enabling collaboration between developers; I encourage game developers or primarily learn-as-you-go developer to collaborate.
+Beginner game developers, beginner web developers, and those who just learning coding is encouraged to collaborate. 
 
 <h1> FEATURES </h1>
 <hr>
@@ -17,3 +15,10 @@ GAMESET is a gamers discussion website which is open to all. This is part of my 
 FOR COLABORATION: Things to consider as follow
 1. The game development environment using; django, html, and css, bootstrap. Main backend programming language.
 2. Beginner friendly.
+
+<h1> Who am I </h1>
+<hr>
+Hi, Victor is here. I am an eastern Indonesian student.
+I am a college student at Western Michigan University, I like video games, musics, readings; comic books and book as a general. 
+I like to play musical instruments, my favorite instrument is piano. 
+
