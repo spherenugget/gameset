@@ -16,7 +16,7 @@
             <nav class="navbar navbar-expand-sm navbar-dark">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{% url 'index' %}">
                             <h3 class="mb-4">Home</h3>
                         </a>
                     </li>
@@ -41,73 +41,72 @@
         <hr> 
 
         <!-- Most Played Games Section -->
-        <h2 class="mb-3">Most Played Games</h2>
-        <div class="container-block ">
-            <div class="row mb-2">
-                {% for game in top_three_games %}
-                <a href="{% url 'game-detail' game.id%}" class="col-md-3 mb-3 mr-3">
-                    <div class="card-flex">
-                        <img src="{{ game.background_image }}" class="card-img-top w-100" alt="{{ game.name }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ game.name }}</h5>
-                            <hr>
-                            <p class="card-text"><b>Released: </b>{{ game.released }}</p>
-                            <p class="card-text">
-                                <b>Rating: </b>
-                                {% if game.rating != "Not Rated" %}
-                                    {{ game.rating }}
-                                {% else %}
-                                    Not Rated
-                                {% endif %}
-                            </p>
-                            
-                            <p class="card-text"><b>Genre: </b>{{ game.genres|join:", " }}</p>
-                        </div>
-                    </div>
-                </a>
-                {% empty %}
-                    <div class="col-12">
-                        <div class="alert alert-warning">No games available from the API.</div>
-                    </div>
-                {% endfor %}
+<h2 class="mb-3">Most Played Games</h2>
+<div class="container-block">
+    <div class="row mb-2">
+        {% for game in top_three_games %}
+        <a href="{% url 'game_detail' game.id %}" class="col-md-3 mb-3 mr-3">
+            <div class="card-flex">
+                <img src="{{ game.background_image }}" class="card-img-top w-100" alt="{{ game.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ game.name }}</h5>
+                    <hr>
+                    <p class="card-text"><b>Released: </b>{{ game.released }}</p>
+                    <p class="card-text">
+                        <b>Rating: </b>
+                        {% if game.rating != "Not Rated" %}
+                            {{ game.rating }}
+                        {% else %}
+                            Not Rated
+                        {% endif %}
+                    </p>
+                    <p class="card-text"><b>Genre: </b>{{ game.genres|join:", " }}</p>
+                </div>
+            </div>
+        </a>
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-warning">No games available from the API.</div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- All Games Section -->
+<h2 class="mb-3">All Games</h2>
+<div class="row mb-2">
+    {% for game in api_games %}
+    <a href="{% url 'game_detail' game.id %}" class="col-md-2 mb-3 ml-2">
+        <div class="card">
+            <img src="{{ game.background_image }}" class="card-img-top" alt="{{ game.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ game.name }}</h5>
+                <hr>
+                <p class="card-text"><b>Released: </b>{{ game.released }}</p>
+                <p class="card-text">
+                    <b>Rating: </b>
+                    {% if game.rating != "Not Rated" %}
+                        {{ game.rating }}
+                    {% else %}
+                        Not Rated
+                    {% endif %}
+                </p>
+                <p class="card-text">
+                    <b>Genre: </b>
+                    {% for genre in game.genres %}
+                        {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
             </div>
         </div>
-
-        <h2 class="mb-3">All Games</h2>
-        <div class="row mb-2">
-            {% for game in api_games %}
-            <a href='#' class="col-md-2 mb-3 ml-2">
-                <div class="card">
-                    <img src="{{ game.background_image }}" class="card-img-top" alt="{{ game.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ game.name }}</h5>
-                        <hr>
-                        <p class="card-text"><b>Released: </b>{{ game.released }}</p>
-                        <p class="card-text">
-                            <p class="card-text">
-                                <b>Rating: </b>
-                                {% if game.rating != "Not Rated" %}
-                                    {{ game.rating }}
-                                {% else %}
-                                    Not Rated
-                                {% endif %}
-                            </p>
-                            
-                        <p class="card-text">
-                            <b>Genre: </b>
-                            {% for genre in game.genres %}
-                                {{ genre.name }}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>
-                </div>
-            </a>
-            {% empty %}
-                <div class="col-12">
-                    <div class="alert alert-warning">No games available from the API.</div>
-                </div>
-            {% endfor %}
+    </a>
+    {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning">No games available from the API.</div>
         </div>
+    {% endfor %}
+</div>
+
 
         <div class="pagination">
             {% if previous_page %}
@@ -117,7 +116,7 @@
             {% endif %}
             {% if next_page %}
                 <a href="?page={{ next_page }}">
-                    <button type="button" class="btn btn-primary w-500px">Next</button>
+                    <button type="button" class="btn btn-primary">Next</button>
                 </a>
             {% endif %}
         </div>

@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 import requests
 from gamesetwebapp.models import Game
@@ -69,3 +70,44 @@ class IndexView(TemplateView):
         # Render the template with both the database games and API data
         template = loader.get_template(self.template_name)
         return HttpResponse(template.render(context, request))
+
+def trend(request): 
+    return render(request, 'trend.html')
+
+class GameDetailView(TemplateView):
+    template_name = "gamesetwebapp/game.html"
+    model = Game
+    template_name = 'gamesetwebapp/games.html'
+    context_object_name = 'game'
+
+    def get(self, request, game_id):
+        try:
+            # First, try to fetch the game from your database
+            game = Game.objects.get(id=game_id)
+            game_data = {
+                "id": game.id,
+                "name": game.name,
+                "description": game.description,
+                "rate": game.rate,
+                "image": game.image.url if game.image else None,
+            }
+        except Game.DoesNotExist:
+            # If not found in the database, fetch from the RAWG.io API
+            api_url = f"https://api.rawg.io/api/games/{game_id}?key={API_KEY}"
+            response = requests.get(api_url)
+            if response.status_code == 200:
+                game_data = response.json()
+            else:
+                return HttpResponse("Game not found", status=404)
+
+        return render(request, self.template_name, {"game": game_data})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        game = context['game']
+        
+        # Ensure 'rate' and 'image' are being passed
+        print(f"Game Rating: {game.rate}")
+        print(f"Game Image: {game.image}")
+        
+        return context
