@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'trend'%}">
+                        <a class="nav-link" href="{% url 'trend' %}">
                             <h3 class="mb-4">Trend</h3>
                         </a>
                     </li>
@@ -47,30 +47,25 @@
 
         <hr>
 
-        <!-- Comments Section -->
-        <h2>Comments</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Submit Comment</button>
-        </form>
-        
         <h3>All Comments</h3>
-        {% for comment in comments %}
-            <div>
-                <strong>{{ comment.user_name }}</strong>:
-                <p>{{ comment.content }}</p>
-                <small>{{ comment.created_at }}</small>
-            </div>
-        {% empty %}
-            <p>No comments yet.</p>
-        {% endfor %}
+        <div id="comments-section">
+            {% for comment in comments %}
+                <div class="comment">
+                    <strong>{{ comment.user_name }}</strong>:
+                    <p>{{ comment.content }}</p>
+                    <small>{{ comment.created_at }}</small>
+                </div>
+                <hr>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
         </div>
 
         <!-- Comment Form -->
         <h3>Add a Comment</h3>
         <form id="comment-form">
             {% csrf_token %}
+            <input type="hidden" name="game_id" value="{{ game.id }}"> <!-- Hidden field for game ID -->
             <div class="form-group">
                 <input type="text" name="user_name" class="form-control" placeholder="Your Name" required>
             </div>
@@ -79,6 +74,13 @@
             </div>
             <button type="submit" class="btn btn-success">Submit Comment</button>
         </form>
+
+        <hr>
+
+        <!-- Back to Homepage Button -->
+        <div class='card'>
+            <button class="btn btn-primary" onclick="window.location.href='{% url 'index' %}'">Back to Homepage</button>
+        </div>
     </div>
 
     <script>
@@ -97,7 +99,7 @@
                 $.post("{% url 'game_detail' game.id %}", $(this).serialize(), function(data) {
                     if (data.success) {
                         // Append the new comment to the comments section
-                        $('#comments-section').append('<div class="comment"><p><strong>' + $('input[name="user_name"]').val() + '</strong>: ' + $('textarea[name="content"]').val() + '</p><p><small>Just now</small></p></div><hr>');
+                        $('#comments-section').append('< <div class="comment"><strong>' + $('input[name="user_name"]').val() + '</strong>: <p>' + $('textarea[name="content"]').val() + '</p><small>Just now</small></div><hr>');
                         $('input[name="user_name"]').val(''); // Clear the input
                         $('textarea[name="content"]').val(''); // Clear the textarea
                     } else {

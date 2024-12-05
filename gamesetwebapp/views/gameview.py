@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
 import requests
 from gamesetwebapp.models import Game, Comment
@@ -66,23 +66,27 @@ class GameDetailView(View):
         })
 
     def post(self, request, game_id):
-        game = get_object_or_404(Game, id=game_id)
-        comments = game.comments.all()
+        # Get the game ID from the request
+        user_name = request.POST.get('user_name')
+        content = request.POST.get('content')
 
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.game = game  # Associate the comment with the game
-            comment.save()
+        # Save the comment regardless of game existence
+        comment = Comment.objects.create(
+            game_id=game_id,  # Use the game_id from the URL
+            user_name=user_name,
+            content=content
+        )
+
+        # Optionally, you can increment the review count if the game exists
+        try:
+            game = Game.objects.get(id=game_id)
             game.review_count += 1  # Increment the review count
             game.save()  # Save the game to update the review count
-            return redirect('game_detail', game_id=game.id)  # Redirect to the same page
+        except Game.DoesNotExist:
+            pass  # Ignore if the game does not exist
 
-        return render(request, self.template_name, {
-            "game": game,
-            "comments": comments,
-            "form": form,
-        })
+        # Return a JSON response indicating success
+        return JsonResponse({'success': True, 'comment': comment.content})
 
 class TrendView(View):
     template_name = "gamesetwebapp/trend.html"
