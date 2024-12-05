@@ -15,7 +15,7 @@ class IndexView(TemplateView):
         
         # Create context from database games
         context = {
-            "games": [
+            "comments": [
                 {
                     "name": game.name,
                     "description": game.description,
