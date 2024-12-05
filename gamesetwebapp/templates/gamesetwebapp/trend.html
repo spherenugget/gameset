@@ -26,13 +26,13 @@
 
         <div class="row">
             {% for game in trending_games %}
-            <a href="{% url 'game-detail' game.id %}" class="col-md-3 mb-3">
+            <a href="{% url 'game_detail' game.id %}" class="col-md-3 mb-3">
                 <div class="card">
-                    <img src="{{ game.background_image }}" class="card-img-top" alt="{{ game.name }}">
+                    <img src="{{ game.image }}" class="card-img-top" alt="{{ game.name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ game.name }}</h5>
                         <hr>
-                        <p class="card-text"><b>Rating:</b> {{ game.rating }}</p>
+                        <p class="card-text"><b>Rating:</b> {{ game.rate }}</p>
                         <p class="card-text"><b>Ratings Count:</b> {{ game.ratings_count }}</p>
                         <p class="card-text"><b>Playtime:</b> {{ game.playtime }} hrs</p>
                     </div>

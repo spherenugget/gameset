@@ -1,9 +1,7 @@
-from django import forms 
+from django import forms
 from .models import Comment
-class CommentForm(forms.ModelForm): 
-    class Meta: 
+
+class CommentForm(forms.ModelForm):
+    class Meta:
         model = Comment
-        fields = ['comment_text']
-        widgets = {
-            'comment_text': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Add your comment here...'})
-        }
+        fields = ['user_name', 'content']  # Fields to include in the form
