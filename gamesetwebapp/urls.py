@@ -1,9 +1,8 @@
 from django.urls import path
-from gamesetwebapp.views.indexview import GameDetailView, IndexView, TrendView
-
+from gamesetwebapp.views.indexview import IndexView
+from gamesetwebapp.views.gameview import GameDetailView
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('', TrendView.as_view(), name='trend'),
-    path('', GameDetailView.as_view(), name='game-detail'),
+    path('game/<int:game_name>/', GameDetailView.as_view(), name='game-detail'),
 ]

@@ -13,13 +13,13 @@ class IndexView(TemplateView):
         # Fetch game data from the database
         games = Game.objects.order_by("name")
         
-        # Create context from database games
+        # Create context from database games, handling missing or zero ratings
         context = {
             "comments": [
                 {
                     "name": game.name,
                     "description": game.description,
-                    "rate": game.rate,
+                    "rate": game.rate if game.rate > 0 else "Not Rated",  # Handle zero rating
                     "image": game.image
                 }
                 for game in games
@@ -44,6 +44,13 @@ class IndexView(TemplateView):
         if response.status_code == 200:
             api_data = response.json()  # Parse the API response to JSON
             api_results = api_data.get("results", [])
+            
+            # Handle ratings in the API data (default to "Not Rated" for zero or missing ratings)
+            for game in api_results:
+                game['rating'] = game.get('rating', 0)  # Ensure 'rating' key exists
+                if game['rating'] == 0:
+                    game['rating'] = "Not Rated"  # Handle zero ratings
+
             next_page = page + 1 if api_results else None  # Determine next page availability
             previous_page = page - 1 if page > 1 else None  # Determine previous page availability
 
@@ -62,59 +69,3 @@ class IndexView(TemplateView):
         # Render the template with both the database games and API data
         template = loader.get_template(self.template_name)
         return HttpResponse(template.render(context, request))
-    
-#get game details
-from django.shortcuts import get_object_or_404, render
-
-class GameDetailView(TemplateView):
-    template_name = "gamesetwebapp/games.html"
-
-    def get(self, request, game_id):
-        try:
-            # First, try to fetch the game from your database
-            game = Game.objects.get(id=game_id)
-            game_data = {
-                "id": game.id,
-                "name": game.name,
-                "description": game.description,
-                "rate": game.rate,
-                "image": game.image.url if game.image else None,
-            }
-        except Game.DoesNotExist:
-            # If not found in the database, fetch from the RAWG.io API
-            api_url = f"https://api.rawg.io/api/games/{game_id}?key={API_KEY}"
-            response = requests.get(api_url)
-            if response.status_code == 200:
-                game_data = response.json()
-            else:
-                return HttpResponse("Game not found", status=404)
-
-        return render(request, self.template_name, {"game": game_data})
-
-
-#Trending game views
-class TrendView(TemplateView):
-    template_name = "gamesetwebapp/trend.html"
-
-    def get(self, request):
-        # API request to RAWG.io for games
-        api_url = f"https://api.rawg.io/api/games?key={API_KEY}&page_size=40"
-        response = requests.get(api_url)
-
-        trending_games = []
-        if response.status_code == 200:
-            api_data = response.json()
-            api_results = api_data.get("results", [])
-
-            # Filter games based on trending criteria
-            trending_games = [
-                game for game in api_results
-                if game.get("rating", 0) > 3.5
-                and game.get("ratings_count", 0) > 500
-                and game.get("playtime", 0) > 10
-            ]
-
-        context = {
-            "trending_games": trending_games
-        }
-        return render(request, self.template_name, context)

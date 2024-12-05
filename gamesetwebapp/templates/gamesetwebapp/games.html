@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ game.name }} - Game Details</title>
+    {% load static %}
+    <!-- Add Bootstrap CSS via CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid my-4">
+        <div class='row' style='background-color: black;'>
+        <img src={% static 'gamesetwebapp/images/icon.png'%} class='gameset-icon'> 
+        <!-- Navigation Bar -->
+         <nav class="navbar navbar-expand-sm navbar-dark">
+            <!-- Menu options-->
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class='nav-link' href="#">Home</a></li>
+                <li class="nav-item"><a class='nav-link' href="#">Trend</a></li>
+                <li class="nav-item"><a class='nav-link' href="#">About</a></li>
+            </ul>
+        </div>
+         </nav>
+         <!-- Game descriptions -->
+         <h1>{{ game.name }}</h1>
+
+         <div class="game-details">
+             <h2>Description:</h2>
+             <p>{{ game.description }}</p>
+             
+             <h3>Rating:</h3>
+             <p>{{ game.rate if game.rate != 0 else "Not Rated" }}</p>  <!-- Display rating or default to "Not Rated" -->
+     
+             {% if game.image %}
+                 <h3>Image:</h3>
+                 <img src="{{ game.image }}" alt="{{ game.name }}">
+             {% else %}
+                 <p>No image available.</p>
+             {% endif %}
+         </div>
+     
+         <div class="back-button">
+             <a href="{% url 'index' %}">Back to Game List</a>  <!-- Link to go back to the index page -->
+         </div>
+</body>
+</html>
