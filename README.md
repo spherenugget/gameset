@@ -20,6 +20,15 @@ Beginner game developers, beginner web developers, and those who just learning c
   <li>Beginner friendly.</li> 
 </ol>
 
+<h2>--Forking--</h2>
+<ol>
+  <li>On github, navigation on the top right corner</li>
+  ![image](https://github.com/user-attachments/assets/d88166d6-eae5-493d-b665-d939693ed581)
+  <li>Under "owner", select the dropdown menu and click an owner for the forked repository.</li>
+  <li>Click <b>Create fork</b>.</li>
+  <li>Under "owner", select the dropdown menu and click an owner for the forked repository.</li>
+
+</ol>
 <h1> Who am I </h1>
 <hr>
 Hi, Victor is here. I am an eastern Indonesian student.
