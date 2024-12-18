@@ -38,6 +38,10 @@ Beginner game developers, beginner web developers, and those who just learning c
 <p>Submit a Pull Request: </p>
 <bash> git pull origin main</bash>
 
+'''bash
+# Update package lists
+
+
 
 </ol>
 <h1> Who am I </h1>
