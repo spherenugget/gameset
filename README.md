@@ -20,13 +20,24 @@ Beginner game developers, beginner web developers, and those who just learning c
   <li>Beginner friendly.</li> 
 </ol>
 
-<h2>--Forking--</h2>
+<h2>Set up a repository</h2>
 <ol>
-  <li>On github, navigation on the top right corner</li>
-  ![image](https://github.com/user-attachments/assets/d88166d6-eae5-493d-b665-d939693ed581)
-  <li>Under "owner", select the dropdown menu and click an owner for the forked repository.</li>
-  <li>Click <b>Create fork</b>.</li>
-  <li>Under "owner", select the dropdown menu and click an owner for the forked repository.</li>
+  <li>Get the repository by clicking dropdown on <b>Code</b> </li>
+  ![image](https://github.com/user-attachments/assets/ddfb8e88-0349-4aea-9975-8f26c32736fe)
+  <li>This is meant for the repository to be cloned or downloeded on your computer.</li>
+</ol>
+
+<h2>Collaborate Using Git</h2>
+<hr>
+<p>Stage changes: </p>
+<bash> git add *</bash>
+<p>Commit changes: </p>
+<bash> git commit -m "Describe the changes made"</bash>
+<p>Push changes: </p>
+<bash> git push origin main</bash>
+<p>Submit a Pull Request: </p>
+<bash> git pull origin main</bash>
+
 
 </ol>
 <h1> Who am I </h1>
