@@ -29,17 +29,6 @@ Beginner game developers, beginner web developers, and those who just learning c
 
 <h2>Collaborate Using Git</h2>
 <hr>
-<p>Stage changes: </p>
-<bash> git add *</bash>
-<p>Commit changes: </p>
-<bash> git commit -m "Describe the changes made"</bash>
-<p>Push changes: </p>
-<bash> git push origin main</bash>
-<p>Submit a Pull Request: </p>
-<bash> git pull origin main</bash>
-
-'''bash
-# Update package lists
 
 
 
